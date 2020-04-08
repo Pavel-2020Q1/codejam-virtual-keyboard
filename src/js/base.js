@@ -187,10 +187,15 @@ document.addEventListener('click', (event) => {
         case 'key shift-right':
             if (shift == false) {
                 shift = true;
+                console.log(event.target.children);
+                event.target.style.background = 'yellow';
+                event.target.children.style.background = 'yellow';
                 document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'none');
                 document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'block');
             } else {
                 shift = false;
+                event.target.style.background = '#3b4e6d';
+                event.target.children.style.background = '#3b4e6d';
                 document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'block');
                 document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'none');
             }
@@ -246,12 +251,12 @@ document.addEventListener('click', (event) => {
             break;
         case 'Backspace':
         case 'key backspace':
-            document.getElementById('area').innerHTML.slice(0, -1);
+            let str = document.getElementById('area').value;
+            document.getElementById('area').value = str.substring(0, str.length - 1);
             break;
     };
 });
 
 document.addEventListener('keydown', () => {
     document.getElementById('area').focus();
-
 });
