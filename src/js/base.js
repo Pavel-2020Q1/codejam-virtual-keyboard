@@ -158,11 +158,12 @@ document.addEventListener('keydown', () => {
 
 document.addEventListener('click', (event) => {
     if (event.target.className == 'key' || event.target.className == 'lower' || event.target.className == 'upper') {
-        if (!capslock) {
-            console.log(document.querySelectorAll('lower').textContent);
+        if (capslock) {
+            document.getElementById('area').innerHTML += event.target.textContent;
+        } else {
             document.getElementById('area').innerHTML += event.target.textContent;
         }
-        document.getElementById('area').innerHTML += event.target.textContent;;
+
     }
 
     switch (event.target.className) {
@@ -170,7 +171,15 @@ document.addEventListener('click', (event) => {
             document.getElementById('area').innerHTML += '    ';
             break;
         case 'CapsLock':
-
+            if (capslock == false) {
+                capslock = true;
+                document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'none');
+                document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'block');
+            } else {
+                capslock = false;
+                document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'block');
+                document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'none');
+            }
             break;
         case 'ShiftLeft':
         case 'ShiftRight':
@@ -197,19 +206,19 @@ document.addEventListener('click', (event) => {
             break;
         case 'ArrowUp':
         case 'key arrowUp':
-
+            document.getElementById('area').innerHTML += '↑';
             break;
         case 'ArrowRight':
         case 'key arrowRight':
-
+            document.getElementById('area').innerHTML += '→';
             break;
         case 'ArrowDown':
         case 'key arrowDown':
-
+            document.getElementById('area').innerHTML += '↓';
             break;
         case 'ArrowLeft':
         case 'key arrowLeft':
-
+            document.getElementById('area').innerHTML += '←';
             break;
         case 'Enter':
         case 'key enter':
@@ -217,7 +226,7 @@ document.addEventListener('click', (event) => {
             break;
         case 'Delete':
         case 'key del':
-            document.getElementById('area').innerHTML.slice(0, -1);
+            document.getElementById('area').innerHTML = '';
             break;
         case 'Backspace':
         case 'key backspace':
