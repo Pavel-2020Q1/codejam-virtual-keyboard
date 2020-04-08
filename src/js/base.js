@@ -152,6 +152,11 @@ addElementEvent(4, 'arrowRight', 'ArrowRight', '→');
 
 addElementEvent(4, 'ctrl', 'ControlRight', 'Ctrl');
 
+const text = document.createElement('div');
+text.className = 'lang';
+keyboard.append(text);
+text.innerHTML = `<h4 style="text-align: center">Keyboard shortcut for changing the language Alt + Shift or the Win key</h4>`;
+
 /* EVENTS */
 
 
@@ -185,19 +190,34 @@ document.addEventListener('click', (event) => {
         case 'ShiftRight':
         case 'key shift':
         case 'key shift-right':
-            if (shift == false) {
-                shift = true;
+            if (alt == false) {
+                if (shift == false) {
+                    shift = true;
 
-                //event.target.style.background = 'yellow';
-                // event.target.children.style.background = 'yellow';
-                document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'none');
-                document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'block');
-            } else {
-                shift = false;
-                //event.target.style.background = '#3b4e6d';
-                //event.target.children.style.background = '#3b4e6d';
-                document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'block');
-                document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'none');
+                    //event.target.style.background = 'yellow';
+                    // event.target.children.style.background = 'yellow';
+                    document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'none');
+                    document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'block');
+                } else {
+                    shift = false;
+                    //event.target.style.background = '#3b4e6d';
+                    //event.target.children.style.background = '#3b4e6d';
+                    document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'block');
+                    document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'none');
+                }
+            }
+
+            if (alt == true) {
+                if (langRu == false) {
+                    langRu = true;
+                    document.querySelectorAll('.Rus').forEach(elem => elem.style.display = 'block');
+                    document.querySelectorAll('.Eng').forEach(elem => elem.style.display = 'none');
+                } else {
+                    langRu = false;
+                    document.querySelectorAll('.Rus').forEach(elem => elem.style.display = 'none');
+                    document.querySelectorAll('.Eng').forEach(elem => elem.style.display = 'block');
+                }
+                alt = false;
             }
             break;
         case 'ControlLeft':
@@ -220,7 +240,22 @@ document.addEventListener('click', (event) => {
         case 'AltLeft':
         case 'AltRight':
         case 'key alt':
-
+            if (alt == false) {
+                alt = true;
+                if (shift == true) {
+                    if (langRu == false) {
+                        langRu = true;
+                        document.querySelectorAll('.Rus').forEach(elem => elem.style.display = 'block');
+                        document.querySelectorAll('.Eng').forEach(elem => elem.style.display = 'none');
+                    } else {
+                        langRu = false;
+                        document.querySelectorAll('.Rus').forEach(elem => elem.style.display = 'none');
+                        document.querySelectorAll('.Eng').forEach(elem => elem.style.display = 'block');
+                    }
+                    shift == false;
+                }
+                alt == false;
+            }
             break;
         case 'key space':
             document.getElementById('area').innerHTML += ' ';
@@ -257,6 +292,14 @@ document.addEventListener('click', (event) => {
     };
 });
 
-document.addEventListener('keydown', () => {
-    document.getElementById('area').focus();
+document.addEventListener('keydown', event => {
+    console.log(event.key);
+    if (event.key == 'Tab' || event.key == 'Shift' || event.key == 'Control' ||
+        event.key == 'Meta' || event.key == 'Alt' || event.key == 'ArrowLeft' ||
+        event.key == 'ArrowDown' || event.key == 'ArrowRight' || event.key == 'ArrowUp') {
+        document.getElementById('area');
+
+    } else {
+        document.getElementById('area').innerHTML += event.key;
+    }
 });
