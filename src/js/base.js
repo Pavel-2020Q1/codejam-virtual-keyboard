@@ -187,15 +187,15 @@ document.addEventListener('click', (event) => {
         case 'key shift-right':
             if (shift == false) {
                 shift = true;
-                console.log(event.target.children);
-                event.target.style.background = 'yellow';
-                event.target.children.style.background = 'yellow';
+
+                //event.target.style.background = 'yellow';
+                // event.target.children.style.background = 'yellow';
                 document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'none');
                 document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'block');
             } else {
                 shift = false;
-                event.target.style.background = '#3b4e6d';
-                event.target.children.style.background = '#3b4e6d';
+                //event.target.style.background = '#3b4e6d';
+                //event.target.children.style.background = '#3b4e6d';
                 document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'block');
                 document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'none');
             }
