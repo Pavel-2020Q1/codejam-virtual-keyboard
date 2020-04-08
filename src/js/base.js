@@ -51,6 +51,9 @@ keyboard.className = 'keyboard';
 textarea.after(keyboard);
 
 let capslock = false,
+    shift = false,
+    alt = false,
+    ctrl = false,
     langRu = false;
 
 
@@ -151,10 +154,7 @@ addElementEvent(4, 'ctrl', 'ControlRight', 'Ctrl');
 
 /* EVENTS */
 
-document.addEventListener('keydown', () => {
-    document.getElementById('area').focus();
-    console.log(document.getElementsByClassName('event.code'));
-});
+
 
 document.addEventListener('click', (event) => {
     if (event.target.className == 'key' || event.target.className == 'lower' || event.target.className == 'upper') {
@@ -185,7 +185,15 @@ document.addEventListener('click', (event) => {
         case 'ShiftRight':
         case 'key shift':
         case 'key shift-right':
-
+            if (shift == false) {
+                shift = true;
+                document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'none');
+                document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'block');
+            } else {
+                shift = false;
+                document.querySelectorAll('.lower').forEach(elem => elem.style.display = 'block');
+                document.querySelectorAll('.upper').forEach(elem => elem.style.display = 'none');
+            }
             break;
         case 'ControlLeft':
         case 'ControlRight':
@@ -194,7 +202,15 @@ document.addEventListener('click', (event) => {
             break;
         case 'MetaLeft':
         case 'key win':
-            document.getElementById('area').innerHTML += 'win';
+            if (langRu == false) {
+                langRu = true;
+                document.querySelectorAll('.Rus').forEach(elem => elem.style.display = 'block');
+                document.querySelectorAll('.Eng').forEach(elem => elem.style.display = 'none');
+            } else {
+                langRu = false;
+                document.querySelectorAll('.Rus').forEach(elem => elem.style.display = 'none');
+                document.querySelectorAll('.Eng').forEach(elem => elem.style.display = 'block');
+            }
             break;
         case 'AltLeft':
         case 'AltRight':
@@ -233,5 +249,9 @@ document.addEventListener('click', (event) => {
             document.getElementById('area').innerHTML.slice(0, -1);
             break;
     };
+});
+
+document.addEventListener('keydown', () => {
+    document.getElementById('area').focus();
 
 });
