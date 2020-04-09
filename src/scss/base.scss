@@ -25,10 +25,16 @@
     text-align: center;
     color: #fff;
     background: #132642;
-    border-radius: 2s;
     cursor: pointer;
-    user-select: none;
-    transition: .2s;
+}
+
+.active {
+    border-radius: 10px;
+    background-color: #5571ee;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
 }
 
 .keyboard .key:hover {
@@ -88,11 +94,11 @@
     color: #444;
 }
 
-.Eng,
 .lower {
     display: block;
 }
 
+.Eng,
 .Rus,
 .upper {
     display: none;
@@ -100,9 +106,4 @@
 
 .down {
     display: inherit;
-}
-
-.keyboard .key.active {
-    background-color: #5571ee;
-    border-radius: 50px;
 }
