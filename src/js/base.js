@@ -136,8 +136,8 @@ function setLang() {
 
 function startLang() {
     if (!localStorage.getItem('Ru') || !localStorage.getItem('En')) {
-        localStorage.setItem('Ru', `${invisible}`);
-        localStorage.setItem('En', `${visible}`);
+        localStorage.setItem('Ru', `${visible}`);
+        localStorage.setItem('En', `${invisible}`);
     }
     document.querySelectorAll('.Rus').forEach(elem => elem.style.display = `${localStorage.getItem('Ru')}`);
     document.querySelectorAll('.Eng').forEach(elem => elem.style.display = `${localStorage.getItem('En')}`);
